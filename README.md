@@ -1,2 +1,5 @@
-# assets
-public assets of ttl.academy
+# Logo
+
+This is main logo of ttl.academy
+
+
