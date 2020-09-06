@@ -82,13 +82,13 @@ add_filter( 'woocommerce_add_to_cart_validation', 'only_one_items_allowed_add_to
 
 function only_one_items_allowed_add_to_cart( $passed, $product_id, $quantity ) {
     $cart_items_count = WC()->cart->get_cart_contents_count();
-    $total_count = $cart_items_count + $quantity;
-
-    if( $cart_items_count >= 1 || $total_count >= 1 ){
+    
+    if( $cart_items_count >= 1){
         // Set to false
+        $cart_items_count =1;
         $passed = false;
         // Display a message
-        wc_add_notice( __( "You can’t have more than 1 same course in cart", "woocommerce" ), "error" );
+        //wc_add_notice( __( "You can’t have more than 1 same course in cart", "woocommerce" ), "error" );
     }
     return $passed;
 }
@@ -105,7 +105,7 @@ function only_one_items_allowed_cart_update( $passed, $cart_item_key, $values, $
                 $passed = false;
 
             // Display a message
-                wc_add_notice( __( "You can’t update more than 1 items in cart", "woocommerce" ), "error" );
+                wc_add_notice( __( "You can’t add more than one same course in cart", "woocommerce" ), "error" );
             }
     }
     return $passed;
