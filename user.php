@@ -1,7 +1,7 @@
    
 <?php
     
-// wp-content/plugins/masterstudy-lms-learning-management-system/lms/classes/user.php
+// wp-content/plugins/<theme>/lms/classes/
 
     /*If password is equal*/
         if ($user_password !== $user_password_re) {
