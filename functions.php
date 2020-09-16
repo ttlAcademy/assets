@@ -1,7 +1,7 @@
 
 <?php
 
-// 
+// <site content path>/wp-content/themes/<theme name>
 $theme_info = wp_get_theme();
 define('STM_THEME_VERSION', (WP_DEBUG) ? time() : $theme_info->get('Version'));
 define('STM_MS_SHORTCODES', '1');
