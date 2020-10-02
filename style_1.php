@@ -43,7 +43,7 @@ if (!empty($image_size)) $image_params['img_size'] = $image_size;
             <?php STM_LMS_Templates::show_lms_template('courses/parts/title'); ?>
 
             <!-- here we injected meta data <date>-->
-            <?php echo $my_date; ?>
+            <?php echo "<strong style='color:blue;'>$my_date</strong>"; ?>
 
             <div class="stm_lms_courses__single--meta">
 
