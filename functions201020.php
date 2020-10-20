@@ -58,47 +58,26 @@ if (is_admin()) {
 	require_once($inc_path . '/tgm/tgm-plugin-registration.php');
 }
 
-
-
-
-/************************************************************
- ****************ISTQB-CTFL - 1301 ***************************
- ************************************************************/
-
 // //init hook
 add_action( 'init', 'file_init' );
 function file_init() {
-	$course_1301 = 1301; //ISTQB CTFL
-
-    if ($_REQUEST[ 'dwnld_1301' ] != '' ) {
+    if ($_REQUEST[ 'dwnld_file' ] != '' ) {
         if ( ! is_user_logged_in() ) { // if not logged-in
             //auth_redirect(); //redirect to login page
             wp_redirect( site_url( '/lms-login' ) );   // or some other page
             exit;
         }
-        else { //if logged in
-			$has_course = STM_LMS_User::has_course_access($course_1301);
-			if($has_course){
-				check_download_file( $_REQUEST[ 'dwnld_1301' ], $course_1301 ); // if enrolled pass file to download
-				// wp_redirect( site_url( '/contact-us' ) );
-				// exit;
-			}
-			else {
-				//$course_url = get_the_permalink($course_1301);
-				//wp_redirect( $course_url );
-				//wp_redirect( site_url( '/contact-us' ) );
-				wp_redirect( site_url( '/courses' ) );
-				exit;
-			}
+        else {
+            check_download_file( $_REQUEST[ 'dwnld_file' ] ); // if logged-in pass file to download
         }
     }
 }
 
 
 //function to download file
-function check_download_file( $file, $course_id ) {
+function check_download_file( $file ) {
     $upload = wp_upload_dir();
-    $file = $upload[ 'basedir' ] . '/houses/' . $course_id . '/' . $file;
+    $file = $upload[ 'basedir' ] . '/houses/' . $file;
     if ( !is_file( $file ) ) {
         status_header( 404 );
         die( 'File not found.' );
@@ -122,9 +101,5 @@ function check_download_file( $file, $course_id ) {
             readfile( $file );
             die();
         }
-	}
-	
-
-	///var/www/ttl.academy/wp-content/plugins/masterstudy-lms-learning-management-system/stm-lms-templates/global$
-	//$has_course = STM_LMS_User::has_course_access($course_id);
+    }
 }
