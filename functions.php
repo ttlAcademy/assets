@@ -63,14 +63,15 @@ if (is_admin()) {
 
 /************************************************************
  ****************ISTQB-CTFL*********************************
- **************** 1301, 2874 ***************************
+ **************** 1301, 2874,  ***************************
  ************************************************************/
 
 // //init hook
 add_action( 'init', 'file_init' );
 function file_init() {
-    $course_1301 = 1301; //ISTQB CTFL
-    $course_2874 = 2874; //ISTQB CTFL
+    $course_1301 = 1301; //ISTQB CTFL Live
+    $course_2874 = 2874; //ISTQB CTFL Live
+    $course_1435 = 1435; //ISTQB CTFL Online
 
     if ($_REQUEST[ 'dwnld_1301' ] != '' ) {
         if ( ! is_user_logged_in() ) { // if not logged-in
@@ -81,7 +82,9 @@ function file_init() {
         else { //if logged in
             $has_course1301 = STM_LMS_User::has_course_access($course_1301);
             $has_course2874 = STM_LMS_User::has_course_access($course_2874);
-			if($has_course1301 || $has_course2874){
+            $has_course1435 = STM_LMS_User::has_course_access($course_1435);
+
+			if($has_course1301 || $has_course2874 || $has_course1435){
 				check_download_file( $_REQUEST[ 'dwnld_1301' ], $course_1301 ); // if enrolled pass file to download
 				// wp_redirect( site_url( '/contact-us' ) );
 				// exit;
@@ -131,4 +134,3 @@ function check_download_file( $file, $course_id ) {
 	///var/www/ttl.academy/wp-content/plugins/masterstudy-lms-learning-management-system/stm-lms-templates/global$
 	//$has_course = STM_LMS_User::has_course_access($course_id);
 }
-
